@@ -8,7 +8,7 @@
     <div @click="append('7')" class="btn">7</div>
     <div @click="append('8')" class="btn">8</div>
     <div @click="append('9')" class="btn">9</div>
-    <div @click="times" class="btn operator">x</div>
+    <div @click="times" class="btn operator">×</div>
     <div @click="append('4')" class="btn">4</div>
     <div @click="append('5')" class="btn">5</div>
     <div @click="append('6')" class="btn">6</div>
@@ -93,20 +93,26 @@ export default {
   margin: 0 auto;
   font-size: 40px;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 200;
   text-align: center;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: minmax(50px, auto);
+  border-radius: 40px;
 
   .display {
+    overflow-x: scroll;
     grid-column: 1 / 5;
     background-color: #333;
     color: #fff;
     text-align: right;
+    padding: 7px;
+    border-radius: 7px 7px 0 0;
   }
 
   .zero {
     grid-column: 1 / 3;
+    border-radius: 0 0 0 7px;
   }
 
   .btn {
@@ -117,6 +123,10 @@ export default {
   .operator {
     background-color: orange;
     color: #fff;
+  }
+
+  .btn:last-child {
+    border-radius: 0 0 7px 0;
   }
 }
 </style>
