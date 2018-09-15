@@ -1,5 +1,5 @@
 <template>
-  <div class="calculator">
+  <div id="app" class="calculator">
     <div class="display">{{ current || '0'}}</div>
     <div @click="clear" class="btn">C</div>
     <div @click="sign" class="btn">+/-</div>
@@ -82,14 +82,30 @@ export default {
         parseFloat(this.previous)
       )}`;
       this.previous = null;
-    }
-  }
-}
+    },
+    keypress(e) {
+      let key = e.key;
+      console.log(key);
+      if (!isNaN(key)) { this.append(key); } 
+      else if (key === '+') { this.add(); }
+      else if (key === '-') { this.minus(); }
+      else if (key === '*') { this.times(); }
+      else if (key === '/') { this.devide(); }
+      else if (key === '%') { this.percent(); }
+      else if (key === '=' || key === 'Enter') { this.equal(); }
+      else if (key === 'c') { this.clear(); }
+      else if (key === '.') { this.dot(); }
+    },
+  },
+  mounted() {
+    document.addEventListener('keypress', (e) => this.keypress(e));
+  },
+};
 </script>
 
 <style lang="scss">
 .calculator {
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
   font-size: 40px;
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -118,6 +134,7 @@ export default {
   .btn {
     background-color: #f2f2f2;
     border: 1px solid #999;
+    cursor: pointer;
   }
 
   .operator {
