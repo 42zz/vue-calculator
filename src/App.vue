@@ -83,9 +83,8 @@ export default {
       )}`;
       this.previous = null;
     },
-    keypress(e) {
+    keyup(e) {
       let key = e.key;
-      console.log(key);
       if (!isNaN(key)) { this.append(key); } 
       else if (key === '+') { this.add(); }
       else if (key === '-') { this.minus(); }
@@ -93,12 +92,12 @@ export default {
       else if (key === '/') { this.devide(); }
       else if (key === '%') { this.percent(); }
       else if (key === '=' || key === 'Enter') { this.equal(); }
-      else if (key === 'c') { this.clear(); }
+      else if (key === 'c' || key === 'Escape' || key === 'Backspace') { this.clear(); }
       else if (key === '.') { this.dot(); }
     },
   },
   mounted() {
-    document.addEventListener('keypress', (e) => this.keypress(e));
+    document.addEventListener('keyup', (e) => this.keyup(e));
   },
 };
 </script>
