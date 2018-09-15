@@ -61,7 +61,7 @@ export default {
       this.operatorClicked = true;
     },
     devide() {
-      this.operator = (a, b) => a / b;
+      this.operator = (a, b) => b / a;
       this.setPrevious();
     },
     times() {
@@ -69,7 +69,7 @@ export default {
       this.setPrevious();
     },
     minus() {
-      this.operator = (a, b) => a - b;
+      this.operator = (a, b) => b - a;
       this.setPrevious();
     },
     add() {
@@ -77,11 +77,13 @@ export default {
       this.setPrevious();
     },
     equal() {
-      this.current = `${this.operator(
-        parseFloat(this.current),
-        parseFloat(this.previous)
-      )}`;
-      this.previous = null;
+      if(this.operator !== null) {
+        this.current = `${this.operator(
+          parseFloat(this.current),
+          parseFloat(this.previous)
+        )}`;
+        this.previous = null;
+      }
     },
     keyup(e) {
       let key = e.key;
